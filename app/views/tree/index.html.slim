@@ -1,0 +1,31 @@
+- @tree.each do |content|
+  ul
+    li
+      = content[:title]
+      - if content[:children]
+        ul
+          - content[:children].each do |c2|
+            li
+              = c2[:title]
+              - if c2[:children]
+                ul
+                  - c2[:children].each do |c3|
+                    li
+                      = c3[:title]
+                      - if c3[:children]
+                        ul
+                          - c3[:children].each do |c4|
+                            li= c4[:title]
+= write_tree(@tree)
+
+- write_block_tree(@tree) do |content, &block|
+  ul
+    li
+      = content[:title]
+      - write_block_tree(content[:children], &block)
+
+= write_capture_tree(@tree) do |content, proc|
+  ul
+    li
+      = content[:title]
+      = write_capture_tree(content[:children], proc)
