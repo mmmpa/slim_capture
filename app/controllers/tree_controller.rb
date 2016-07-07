@@ -1,6 +1,6 @@
 class TreeController < ApplicationController
   def index
-@tree = [
+@tree =
   {
     title: :a,
     children: [
@@ -31,6 +31,5 @@ class TreeController < ApplicationController
       }
     ]
   }
-]
   end
 end
